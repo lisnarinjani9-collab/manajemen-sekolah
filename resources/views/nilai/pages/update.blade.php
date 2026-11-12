@@ -32,7 +32,7 @@
                         <label for="nilai">
                             Nilai <span class="required">*</span>
                         </label>
-                        <input type="number" id="nilai" name="nilai" value="{{ $nilai->nilai }}" required>
+                        <input type="number" id="nilai" name="nilai" value="{{ $nilai->nilai }}" min="0" max="100" required>
                     </div>
 
                     <div class="form-group">
