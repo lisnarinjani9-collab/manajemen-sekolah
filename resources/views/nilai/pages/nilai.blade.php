@@ -32,7 +32,7 @@
                             @foreach ($nilai as $item)
                              <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->siswa->nama }}</td>
+                                <td>{{ $item->nama_siswa }}</td>
                                 <td>{{ $item->mata_pelajaran }}</td>
                                 <td>{{ $item->nilai }}</td>
                                 <td>{{ $item->semester }}</td>
