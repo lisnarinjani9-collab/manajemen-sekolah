@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\GuruController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\NilaiController;
-use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 // Role : Guru
@@ -46,3 +42,14 @@ Route::prefix('siswa')->as('siswa.')->group(function () {
     Route::put('/edit/{siswa}', [App\Http\Controllers\SiswaController::class, 'update'])->name('update');
     Route::delete('/delete/{siswa}', [App\Http\Controllers\SiswaController::class, 'destroy'])->name('delete');
 });
+
+
+    // Bagian : Izin
+    Route::prefix('izin')->as('izin.')->group(function () {
+        Route::get('/', [App\Http\Controllers\IzinController::class, 'index'])->name('table');
+        Route::get('/tambah', [App\Http\Controllers\IzinController::class, 'create'])->name('tambah');
+        Route::post('/tambah', [App\Http\Controllers\IzinController::class, 'store'])->name('store');
+        Route::get('/edit/{izin}', [App\Http\Controllers\IzinController::class, 'edit'])->name('edit');
+        Route::put('/edit/{izin}', [App\Http\Controllers\IzinController::class, 'update'])->name('update');
+        Route::delete('/delete/{izin}', [App\Http\Controllers\IzinController::class, 'destroy'])->name('delete');
+    });
