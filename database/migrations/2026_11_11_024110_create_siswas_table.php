@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kelas');
             $table->string('jurusan');
             $table->string('jenis_kelamin');
-            $table->text('alamat');
+            $table->string('alamat');
             $table->timestamps();
         });
     }

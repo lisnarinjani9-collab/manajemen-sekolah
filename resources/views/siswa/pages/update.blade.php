@@ -1,69 +1,71 @@
-<!DOCTYPE html>
-<html lang="id">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Produk - TokoKu</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/produk.js" defer></script>
-</head>
-
-<body>
-    <div class="app">
-        <aside class="sidebar">
-            <div class="brand">TokoKu.</div>
-            <a href="#" class="nav-link">Beranda</a>
-            <a href="index.html" class="nav-link active">Produk</a>
-        </aside>
-
+@extends('siswa.index')
+@section('content')
         <main class="main">
             <header class="page-header">
                 <div>
-                    <h1>Update Produk</h1>
-                    <p class="subtitle">Perbarui informasi produk Anda.</p>
+                    <h1>Update Siswa</h1>
+                    <p class="subtitle">Perbarui informasi siswa Anda.</p>
                 </div>
             </header>
 
             <section class="card form-card">
-                <form id="formUpdate">
-                    <input type="hidden" id="produkId">
+                <form id="formUpdate" action="{{ route('siswa.update', $siswa->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="siswaId" name="siswaId" value="{{ $siswa->id }}">
 
                     <div class="form-group">
-                        <label for="nama_produk">
-                            Nama Produk <span class="required">*</span>
+                        <label for="nisn">
+                            Nisn <span class="required">*</span>
                         </label>
-                        <input type="text" id="nama_produk" required>
+                        <input type="text" id="nisn" name="nisn" value="{{ $siswa->nisn }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="harga_produk">
-                            Harga Produk (Rp) <span class="required">*</span>
+                        <label for="nama">
+                            Nama <span class="required">*</span>
                         </label>
-                        <input type="number" id="harga_produk" min="0" step="1" required>
+                        <input type="text" id="nama" name="nama" value="{{ $siswa->nama }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="kondisi_produk">
-                            Kondisi Produk <span class="required">*</span>
+                        <label for="kelas">
+                            Kelas <span class="required">*</span>
                         </label>
-                        <select id="kondisi_produk" required>
-                            <option value="">Pilih kondisi</option>
-                            <option value="Bagus">Bagus</option>
-                            <option value="Rusak">Rusak</option>
+                        <input type="text" id="kelas" name="kelas" value="{{ $siswa->kelas }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jurusan">
+                            Jurusan <span class="required">*</span>
+                        </label>
+                        <input type="text" id="jurusan" name="jurusan" value="{{ $siswa->jurusan }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jenis_kelamin">
+                            Jenis Kelamin <span class="required">*</span>
+                        </label>
+                        <select id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option value="Laki-laki" {{ $siswa->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ $siswa->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="alamat">
+                            Alamat <span class="required">*</span>
+                        </label>
+                        <input type="text" id="alamat" name="alamat" value="{{ $siswa->alamat }}" required>
+                    </div>
+
                     <div class="form-actions">
-                        <a href="index.html" class="btn btn-secondary">Batal</a>
+                        <a href="{{ route('siswa.table') }}" class="btn btn-secondary">Batal</a>
                         <button type="submit" class="btn btn-primary">
-                            Update Produk
+                            Update Siswa
                         </button>
                     </div>
                 </form>
             </section>
         </main>
-    </div>
-</body>
-
-</html>
+@endsection
