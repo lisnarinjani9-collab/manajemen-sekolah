@@ -32,28 +32,17 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
 
-        // cek role user (huruf besar/kecil tidak masalah)
-        $role = strtolower(Auth::user()->role);
-
-        if ($role === 'guru') {
+        // cek role user
+        if (Auth::user()->role === 'guru') {
             return redirect()->route('guru.table')
             ->with('success', 'Login berhasil selamat datang '
             . Auth::user()->name);
         }
 
         // arahkan ke halaman siswa jika role user adalah siswa
-        if ($role === 'siswa') {
-            return redirect()->route('siswa.table')
-            ->with('success', 'Login berhasil selamat datang '
-            . Auth::user()->name);
-        }
-
-        // kalau role di database bukan guru / siswa
-        $roleDb = Auth::user()->role;
-        Auth::logout();
-        return back()->withErrors([
-            'email' => 'Email dan password benar, tapi role akun tidak dikenali (isi kolom role: "' . $roleDb . '").',
-        ])->onlyInput('email');
+        return redirect()->route('siswa.table')
+        ->with('success', 'Login berhasil selamat datang '
+        . Auth::user()->name);
 
     }
         // kembali jika email atau password salah
